@@ -2,8 +2,8 @@ import {
   SET_DOUBLY_LINKED_LIST_FIRST,
   SET_DOUBLY_LINKED_LIST_LAST,
   SET_DOUBLY_LINKED_LIST_SIZE
-} from './doubly-linked-list-linker.private.js';
-import { DoublyLinkedListNode } from './doubly-linked-list-node.js';
+} from './doubly-doubly-linked-list-linker.private.js';
+import { DoublyLinkedListNode } from './doubly-doubly-linked-list-node.js';
 
 /**
  * A list optimized for quick addition/removal of values at random indexes.
