@@ -3,8 +3,8 @@ import {
   setDoublyLinkedListFirst,
   setDoublyLinkedListLast,
   updateDoublyLinkedListSizeFromNodeMutation
-} from './doubly-doubly-linked-list-linker.private.js';
-import { DoublyLinkedList } from './doubly-doubly-linked-list.js';
+} from './doubly-linked-list-linker.private.js';
+import { DoublyLinkedList } from './doubly-linked-list.js';
 
 /**
  * A node inside a `DoublyLinkedList`.

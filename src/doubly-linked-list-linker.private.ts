@@ -1,5 +1,5 @@
-import { DoublyLinkedListNode } from './doubly-doubly-linked-list-node.js';
-import { DoublyLinkedList } from './doubly-doubly-linked-list.js';
+import { DoublyLinkedListNode } from './doubly-linked-list-node.js';
+import { DoublyLinkedList } from './doubly-linked-list.js';
 
 export const SET_DOUBLY_LINKED_LIST_FIRST = new WeakMap<
   DoublyLinkedList<any>,
