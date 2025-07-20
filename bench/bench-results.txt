@@ -1,0 +1,320 @@
+ DEV  v3.2.4 /home/valentin/code/dev/tests/@xstd/doubly-linked-list
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > insert 3789ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array    151,171.85  0.0002  0.4857  0.0066  0.0104  0.0137  0.0150  0.0390  ±0.95%    75590
+   · list   6,561,871.27  0.0001  4.8471  0.0002  0.0001  0.0003  0.0003  0.0005  ±4.21%  3280936
+
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > remove 8641ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  10,576,199.51  0.0001  0.4457  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.79%  5288100
+   · list   14,114,585.91  0.0001  0.4653  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.82%  7057294
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > set 7418ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  11,768,745.65  0.0001  0.4508  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.85%  5884373
+   · list    8,599,371.38  0.0001  0.6645  0.0001  0.0001  0.0002  0.0002  0.0004  ±1.25%  4299686
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > unshift 3118ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array    150,501.42  0.0001  0.4077  0.0066  0.0106  0.0141  0.0159  0.0396  ±0.98%    75252
+   · list   4,653,767.17  0.0001  6.6203  0.0002  0.0002  0.0004  0.0005  0.0009  ±8.50%  2338670
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > shift 9002ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  11,971,670.00  0.0001  0.5667  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.86%  5985835
+   · list   12,949,336.76  0.0001  0.7347  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.90%  6474669
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > push 5826ms
+     name              hz     min      max    mean     p75     p99    p995    p999      rme  samples
+   · array  10,499,306.72  0.0001  19.3137  0.0001  0.0001  0.0002  0.0002  0.0003  ±10.07%  5249654
+   · list    4,816,528.76  0.0001   130.97  0.0002  0.0001  0.0003  0.0003  0.0004  ±51.45%  2408265
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > pop 9021ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  13,288,410.17  0.0001  0.7228  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.93%  6644206
+   · list   12,172,436.90  0.0001  0.4348  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.91%  6086219
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > iterate 5113ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  11,074,843.42  0.0001  1.0043  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.91%  5537422
+   · list    1,471,182.93  0.0005  1.7898  0.0007  0.0006  0.0014  0.0016  0.0031  ±1.99%   735592
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > insert 3541ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array    149,315.82  0.0001  1.1046  0.0067  0.0106  0.0169  0.0306  0.0435  ±1.12%    74660
+   · list   5,083,532.79  0.0001  5.9922  0.0002  0.0002  0.0004  0.0005  0.0007  ±5.87%  2541767
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > remove 8295ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array   9,795,427.39  0.0001  0.4309  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.77%  4897714
+   · list   12,646,644.46  0.0001  0.4332  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.92%  6323323
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > set 6518ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  12,397,786.04  0.0001  0.4353  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.90%  6198894
+   · list    5,987,704.48  0.0001  0.7015  0.0002  0.0002  0.0003  0.0003  0.0004  ±1.73%  2993853
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > unshift 3340ms
+     name             hz     min      max    mean     p75     p99    p995    p999      rme  samples
+   · array    149,819.36  0.0001   0.9452  0.0067  0.0102  0.0145  0.0174  0.0342   ±1.03%    74911
+   · list   5,361,149.71  0.0001  48.2205  0.0002  0.0002  0.0003  0.0004  0.0006  ±19.20%  2680575
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > shift 8989ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  12,308,029.78  0.0001  0.4243  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.86%  6154015
+   · list   13,328,369.97  0.0001  0.4221  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.85%  6664185
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > push 6436ms
+     name             hz     min      max    mean     p75     p99    p995    p999     rme  samples
+   · array  9,974,796.86  0.0001  17.5101  0.0001  0.0001  0.0002  0.0002  0.0003  ±9.08%  4987399
+   · list   5,156,326.05  0.0001   5.0460  0.0002  0.0002  0.0004  0.0004  0.0006  ±6.55%  2578164
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > pop 9232ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  13,683,982.71  0.0001  0.4945  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.89%  6841992
+   · list   12,176,393.10  0.0001  0.4567  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.86%  6088197
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > iterate 2757ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  4,540,583.68  0.0002  0.4224  0.0002  0.0002  0.0004  0.0004  0.0006  ±0.80%  2270292
+   · list     211,139.59  0.0037  1.1333  0.0047  0.0042  0.0083  0.0097  0.0236  ±2.20%   105570
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > insert 3895ms
+     name             hz     min     max    mean     p75     p99    p995    p999      rme  samples
+   · array    144,889.68  0.0002  0.4135  0.0069  0.0109  0.0150  0.0241  0.0458   ±0.99%    72445
+   · list   4,968,258.57  0.0001  113.68  0.0002  0.0001  0.0003  0.0003  0.0005  ±37.56%  2967076
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > remove 7870ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array   9,595,732.46  0.0001  0.4500  0.0001  0.0001  0.0002  0.0002  0.0004  ±0.75%  4797867
+   · list   12,714,673.84  0.0001  0.4275  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.99%  6357338
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > set 5103ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  10,871,136.74  0.0001  0.4086  0.0001  0.0001  0.0002  0.0002  0.0004  ±0.83%  5435569
+   · list      495,403.44  0.0017  0.4926  0.0020  0.0020  0.0031  0.0035  0.0103  ±0.88%   247702
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > unshift 3377ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array    146,989.58  0.0002  0.5818  0.0068  0.0107  0.0146  0.0165  0.0298  ±0.97%    73497
+   · list   5,570,990.74  0.0001  4.6557  0.0002  0.0002  0.0003  0.0004  0.0006  ±4.79%  2785496
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > shift 8866ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  12,625,543.75  0.0001  0.5518  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.88%  6312772
+   · list   13,118,927.03  0.0001  0.6026  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.84%  6559464
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > push 6272ms
+     name             hz     min      max    mean     p75     p99    p995    p999     rme  samples
+   · array  9,474,726.92  0.0001  17.5357  0.0001  0.0001  0.0002  0.0002  0.0003  ±9.46%  4737364
+   · list   5,693,875.81  0.0001   4.9290  0.0002  0.0002  0.0003  0.0004  0.0006  ±4.31%  2846938
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > pop 8961ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  13,460,760.55  0.0001  0.4200  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.84%  6730381
+   · list   13,262,226.83  0.0001  0.4310  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.95%  6631114
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > iterate 1479ms
+     name           hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  804,484.87  0.0011  0.4333  0.0012  0.0012  0.0025  0.0025  0.0063  ±0.86%   402243
+   · list    23,176.34  0.0355  1.0100  0.0431  0.0390  0.0772  0.4618  0.6705  ±1.88%    11589
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > insert 3469ms
+     name             hz     min      max    mean     p75     p99    p995    p999      rme  samples
+   · array    121,909.09  0.0012   0.4190  0.0082  0.0124  0.0182  0.0291  0.0396   ±0.96%    60956
+   · list   5,420,248.97  0.0001  72.1611  0.0002  0.0001  0.0003  0.0003  0.0005  ±28.59%  2710125
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > remove 7562ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array   9,044,691.76  0.0001  0.4382  0.0001  0.0001  0.0002  0.0003  0.0010  ±0.92%  4522346
+   · list   11,987,381.83  0.0001  0.4282  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.90%  5993691
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > set 4573ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  11,192,619.96  0.0001  0.4425  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.87%  5596310
+   · list       35,725.08  0.0172  0.4635  0.0280  0.0408  0.0475  0.0657  0.4273  ±1.08%    17863
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > unshift 3723ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array    131,144.92  0.0012  0.4067  0.0076  0.0103  0.0157  0.0190  0.0382  ±0.92%    65574
+   · list   5,845,029.15  0.0001  5.4787  0.0002  0.0002  0.0003  0.0004  0.0006  ±4.14%  2922515
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > shift 8422ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  11,562,189.98  0.0001  0.4308  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.75%  5781095
+   · list   12,473,864.93  0.0001  0.5642  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.99%  6236933
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > push 5920ms
+     name             hz     min      max    mean     p75     p99    p995    p999      rme  samples
+   · array  8,639,801.64  0.0001  23.6275  0.0001  0.0001  0.0002  0.0002  0.0004  ±12.31%  4384032
+   · list   4,435,671.41  0.0001  64.0808  0.0002  0.0002  0.0004  0.0004  0.0007  ±30.54%  2217836
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > pop 8963ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  12,312,630.52  0.0001  0.5766  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.87%  6156316
+   · list   12,292,788.97  0.0001  0.4354  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.85%  6146395
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > iterate 1238ms
+     name          hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  87,023.72  0.0104  0.4244  0.0115  0.0113  0.0177  0.0234  0.0310  ±0.84%    43512
+   · list    2,193.21  0.3676  1.5288  0.4560  0.4263  1.1521  1.3147  1.4555  ±2.10%     1097
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > insert 3723ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array     43,502.50  0.0201  0.4347  0.0230  0.0232  0.0307  0.0362  0.3893  ±0.80%    21752
+   · list   6,187,363.03  0.0001  4.4812  0.0002  0.0001  0.0003  0.0003  0.0005  ±4.43%  3093682
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > remove 5557ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array      52,499.09  0.0143  0.4733  0.0190  0.0185  0.0544  0.0547  0.3669  ±0.91%    26252
+   · list   12,116,315.78  0.0001  0.4162  0.0001  0.0001  0.0001  0.0002  0.0002  ±0.77%  6058158
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > set 4536ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  10,735,789.83  0.0001  0.4381  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.90%  5367895
+   · list        3,279.15  0.2358  1.0834  0.3050  0.3112  0.7999  0.8984  0.9507  ±1.83%     1640
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > unshift 3554ms
+     name             hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array     41,714.14  0.0188  0.4172  0.0240  0.0252  0.0391  0.0497  0.3918  ±0.84%    20858
+   · list   5,451,317.71  0.0001  7.0477  0.0002  0.0002  0.0003  0.0004  0.0007  ±4.85%  2725659
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > shift 5117ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array      56,202.47  0.0144  0.7545  0.0178  0.0185  0.0297  0.0363  0.3531  ±0.88%    28102
+   · list   11,655,303.91  0.0001  0.4193  0.0001  0.0001  0.0002  0.0002  0.0003  ±0.80%  5827652
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > push 6019ms
+     name             hz     min      max    mean     p75     p99    p995    p999      rme  samples
+   · array  8,635,745.17  0.0001  18.9828  0.0001  0.0001  0.0002  0.0002  0.0004  ±10.48%  4317873
+   · list   5,141,007.98  0.0001  53.4253  0.0002  0.0002  0.0003  0.0004  0.0006  ±21.27%  2570504
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > pop 9047ms
+     name              hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  13,114,984.64  0.0001  0.4433  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.92%  6557493
+   · list   11,565,581.75  0.0001  0.4847  0.0001  0.0001  0.0002  0.0002  0.0004  ±0.97%  5784915
+
+ ✓ src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > iterate 1260ms
+     name         hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · array  8,067.53  0.1091  0.5694  0.1240  0.1198  0.2148  0.4980  0.5485  ±0.97%     4034
+   · list     227.92  4.0165  9.5243  4.3874  4.4348  8.0241  9.5243  9.5243  ±2.65%      114
+
+ BENCH  Summary
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > insert
+    43.41x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > remove
+    1.33x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > set
+    1.37x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > unshift
+    30.92x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > shift
+    1.08x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > push
+    2.18x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > pop
+    1.09x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+1 > iterate
+    7.53x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > insert
+    34.05x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > remove
+    1.29x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > set
+    2.07x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > unshift
+    35.78x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > shift
+    1.08x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > push
+    1.93x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > pop
+    1.12x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+2 > iterate
+    21.51x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > insert
+    34.29x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > remove
+    1.33x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > set
+    21.94x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > unshift
+    37.90x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > shift
+    1.04x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > push
+    1.66x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > pop
+    1.01x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+3 > iterate
+    34.71x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > insert
+    44.46x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > remove
+    1.33x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > set
+    313.30x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > unshift
+    44.57x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > shift
+    1.08x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > push
+    1.95x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > pop
+    1.00x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+4 > iterate
+    39.68x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > insert
+    142.23x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > remove
+    230.79x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > set
+    3273.96x faster than list
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > unshift
+    130.68x faster than array
+
+  list - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > shift
+    207.38x faster than array
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > push
+    1.68x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > pop
+    1.13x faster than list
+
+  array - src/doubly-linked-list.bench.ts > DoublyLinkedList > size=1e+5 > iterate
+    35.40x faster than list

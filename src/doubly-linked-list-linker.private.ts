@@ -8,7 +8,7 @@ export const SET_DOUBLY_LINKED_LIST_FIRST = new WeakMap<
 
 export function setDoublyLinkedListFirst<GValue>(
   list: DoublyLinkedList<GValue>,
-  node: DoublyLinkedListNode<GValue> | null
+  node: DoublyLinkedListNode<GValue> | null,
 ): void {
   SET_DOUBLY_LINKED_LIST_FIRST.get(list)!(node);
 }
@@ -20,12 +20,15 @@ export const SET_DOUBLY_LINKED_LIST_LAST = new WeakMap<
 
 export function setDoublyLinkedListLast<GValue>(
   list: DoublyLinkedList<GValue>,
-  node: DoublyLinkedListNode<GValue> | null
+  node: DoublyLinkedListNode<GValue> | null,
 ): void {
   SET_DOUBLY_LINKED_LIST_LAST.get(list)!(node);
 }
 
-export const SET_DOUBLY_LINKED_LIST_SIZE = new WeakMap<DoublyLinkedList<any>, (size: number) => void>();
+export const SET_DOUBLY_LINKED_LIST_SIZE = new WeakMap<
+  DoublyLinkedList<any>,
+  (size: number) => void
+>();
 
 export function setDoublyLinkedListSize(list: DoublyLinkedList<any>, size: number): void {
   SET_DOUBLY_LINKED_LIST_SIZE.get(list)!(size);
@@ -41,7 +44,7 @@ function incrementDoublyLinkedListSize(list: DoublyLinkedList<any>): void {
 
 export function updateDoublyLinkedListSizeFromNodeMutation<GValue>(
   removeFromList: DoublyLinkedList<GValue> | null,
-  addedToList: DoublyLinkedList<GValue>
+  addedToList: DoublyLinkedList<GValue>,
 ): void {
   if (removeFromList !== addedToList) {
     if (removeFromList !== null) {

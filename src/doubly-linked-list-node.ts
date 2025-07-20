@@ -2,9 +2,9 @@ import {
   decrementDoublyLinkedListSize,
   setDoublyLinkedListFirst,
   setDoublyLinkedListLast,
-  updateDoublyLinkedListSizeFromNodeMutation
+  updateDoublyLinkedListSizeFromNodeMutation,
 } from './doubly-linked-list-linker.private.js';
-import { DoublyLinkedList } from './doubly-linked-list.js';
+import { type DoublyLinkedList } from './doubly-linked-list.js';
 
 /**
  * A node inside a `DoublyLinkedList`.
@@ -58,7 +58,7 @@ export class DoublyLinkedListNode<GValue> {
   }
 
   /**
-   * Removes the node from its neighbour nodes and its list, but doesn't modify this node's state.
+   * Removes the node from its neighbor nodes and its list, but doesn't modify this node's state.
    */
   #fastRemove(): boolean {
     if (this.#list === null) {
@@ -73,7 +73,7 @@ export class DoublyLinkedListNode<GValue> {
 
       if (this.#next === null) {
         // is last
-        setDoublyLinkedListLast(this.#list, this.#next);
+        setDoublyLinkedListLast(this.#list, this.#previous);
       } else {
         this.#next.#previous = this.#previous;
       }
@@ -219,33 +219,38 @@ export class DoublyLinkedListNode<GValue> {
    */
   replace(node: DoublyLinkedListNode<GValue>): void {
     if (node !== this) {
-      this.#expectedNotIsolated();
-
-      // detaches the node from its list
-      node.#fastRemove();
-
-      node.#list = this.#list;
-      node.#previous = this.#previous;
-      node.#next = this.#next;
-
-      if (this.#next === null) {
-        // is last
-        setDoublyLinkedListLast(this.#list!, node);
-      } else {
-        this.#next.#previous = node;
-      }
-
-      if (this.#previous === null) {
-        // is first
-        setDoublyLinkedListFirst(this.#list!, node);
-      } else {
-        this.#previous.#next = node;
-      }
-
-      this.#previous = null;
-      this.#next = null;
-      this.#list = null;
+      this.insertAfter(node);
+      this.remove();
     }
+
+    // TODO optimize
+    // if (node !== this) {
+    //   this.#expectedNotIsolated();
+    //
+    //   // detaches the node from its list
+    //   node.#fastRemove();
+    //   node.#list = this.#list;
+    //   node.#previous = this.#previous;
+    //   node.#next = this.#next;
+    //
+    //   if (this.#next === null) {
+    //     // is last
+    //     setDoublyLinkedListLast(this.#list!, node);
+    //   } else {
+    //     this.#next.#previous = node;
+    //   }
+    //
+    //   if (this.#previous === null) {
+    //     // is first
+    //     setDoublyLinkedListFirst(this.#list!, node);
+    //   } else {
+    //     this.#previous.#next = node;
+    //   }
+    //
+    //   this.#previous = null;
+    //   this.#next = null;
+    //   this.#list = null;
+    // }
   }
 
   /**
