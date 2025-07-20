@@ -1,6 +1,6 @@
 {
   "name": "@xstd/doubly-linked-list",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "main": "./index.js",
   "scripts": {
@@ -8,12 +8,14 @@
     "fb:format": "prettier --write --ignore-unknown --config ./.prettierrc \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\"",
     "fb:test": "vitest",
     "fb:test:coverage": "vitest run --coverage",
+    "fb:bench": "vitest bench",
+    "fb:typedoc": "typedoc --options typedoc.json --tsconfig tsconfig.json",
     "fb:prod": "node fabrique/actions/cli/build-and-publish.cli.js --mode prod",
     "fb:dev": "node fabrique/actions/cli/build-and-publish.cli.js --mode dev",
     "fb:rc": "node fabrique/actions/cli/build-and-publish.cli.js --mode rc"
   },
   "description": "DoublyLinkedList implementation",
-  "keywords": [],
+  "keywords": ["linked list"],
   "author": "Valentin Richard",
   "license": "MIT",
   "access": "public",
@@ -22,14 +24,17 @@
     "url": "git+https://github.com/xstd-js/doubly-linked-list.git"
   },
   "devDependencies": {
-    "prettier": "^3.4.2",
+    "@types/node": "^24.0.10",
+    "@vitest/coverage-istanbul": "^3.2.4",
+    "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "typedoc": "^0.28.7",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   },
-  "packageManager": "yarn@4.5.3",
+  "packageManager": "yarn@4.9.2",
   "fabrique": {
-    "version": "0.2.3",
+    "version": "0.3.9",
     "type": "lib"
   }
 }
