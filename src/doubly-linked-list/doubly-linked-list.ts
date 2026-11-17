@@ -1,13 +1,11 @@
+import { DoublyLinkedListNode } from '../doubly-linked-list-node/doubly-linked-list-node.js';
 import {
-  SET_DOUBLY_LINKED_LIST_FIRST,
-  SET_DOUBLY_LINKED_LIST_LAST,
-  SET_DOUBLY_LINKED_LIST_SIZE,
-} from './doubly-linked-list-linker.private.js';
-import { DoublyLinkedListNode } from './doubly-linked-list-node.js';
+  DoublyLinkedListInternals,
+  setDoublyLinkedListInternals,
+} from './internals.private/doubly-linked-list-internals.js';
 
 export interface DoublyLinkedListIterableOptions {
   readonly reverse?: boolean;
-  readonly mutationTolerant?: boolean;
 }
 
 /**
@@ -16,26 +14,18 @@ export interface DoublyLinkedListIterableOptions {
  * TRADEOFF: this list is not optimized for fast access based on index.
  */
 export class DoublyLinkedList<GValue> {
-  #first: DoublyLinkedListNode<GValue> | null;
-  #last: DoublyLinkedListNode<GValue> | null;
-  #size: number; // computed
+  readonly #internals: DoublyLinkedListInternals<GValue>;
 
   constructor(values: Iterable<GValue> = []) {
-    this.#first = null;
-    this.#last = null;
-    this.#size = 0;
+    this.#internals = {
+      first: null,
+      last: null,
+      size: 0,
+      iterated: null,
+      reverseIteration: false,
+    };
 
-    SET_DOUBLY_LINKED_LIST_FIRST.set(this, (node: DoublyLinkedListNode<GValue> | null): void => {
-      this.#first = node;
-    });
-
-    SET_DOUBLY_LINKED_LIST_LAST.set(this, (node: DoublyLinkedListNode<GValue> | null): void => {
-      this.#last = node;
-    });
-
-    SET_DOUBLY_LINKED_LIST_SIZE.set(this, (size: number): void => {
-      this.#size = size;
-    });
+    setDoublyLinkedListInternals(this, this.#internals);
 
     const iterator: Iterator<GValue> = values[Symbol.iterator]();
     let result: IteratorResult<GValue>;
@@ -49,21 +39,21 @@ export class DoublyLinkedList<GValue> {
    * Returns the first node of this list, if any.
    */
   get first(): DoublyLinkedListNode<GValue> | null {
-    return this.#first;
+    return this.#internals.first;
   }
 
   /**
    * Returns the last node of this list, if any.
    */
   get last(): DoublyLinkedListNode<GValue> | null {
-    return this.#last;
+    return this.#internals.last;
   }
 
   /**
    * Returns true if the list is empty.
    */
   isEmpty(): boolean {
-    return this.#first === null;
+    return this.#internals.first === null;
   }
 
   /**
@@ -72,7 +62,7 @@ export class DoublyLinkedList<GValue> {
    * COMPLEXITY: `O(1)`
    */
   get size(): number {
-    return this.#size;
+    return this.#internals.size;
     // let size: number = 0;
     //
     // let node: DoublyLinkedListNode<GValue> | null = this.#first;
@@ -95,13 +85,13 @@ export class DoublyLinkedList<GValue> {
     let node: DoublyLinkedListNode<GValue> | null;
 
     if (index < 0) {
-      node = this.#last;
+      node = this.#internals.last;
       while (node !== null && index < -1) {
         index++;
         node = node.previous;
       }
     } else {
-      node = this.#first;
+      node = this.#internals.first;
       while (node !== null && index > 0) {
         index--;
         node = node.next;
@@ -130,7 +120,7 @@ export class DoublyLinkedList<GValue> {
    * COMPLEXITY: `O(n)`
    */
   set(index: number, value: GValue): void {
-    if (index >= this.#size || index < -this.#size) {
+    if (index >= this.#internals.size || index < -this.#internals.size) {
       throw new Error(`Index ${index} is out of bounds.`);
     }
     this.nodeAt(index)!.value = value;
@@ -149,11 +139,11 @@ export class DoublyLinkedList<GValue> {
    * Removes and returns the first value of the list, or `undefined` if the list is empty.
    */
   shift(): GValue | undefined {
-    if (this.#first === null) {
+    if (this.#internals.first === null) {
       return undefined;
     } else {
-      const value: GValue = this.#first.value;
-      this.#first.remove();
+      const value: GValue = this.#internals.first.value;
+      this.#internals.first.remove();
       return value;
     }
   }
@@ -171,11 +161,11 @@ export class DoublyLinkedList<GValue> {
    * Removes and returns the last value of the list, or `undefined` if the list is empty.
    */
   pop(): GValue | undefined {
-    if (this.#last === null) {
+    if (this.#internals.last === null) {
       return undefined;
     } else {
-      const value: GValue = this.#last.value;
-      this.#last.remove();
+      const value: GValue = this.#internals.last.value;
+      this.#internals.last.remove();
       return value;
     }
   }
@@ -187,65 +177,26 @@ export class DoublyLinkedList<GValue> {
    *
    * COMPLEXITY: `O(n)`
    */
-  *iterator({
-    reverse = false,
-    mutationTolerant = false,
-  }: DoublyLinkedListIterableOptions = {}): Generator<DoublyLinkedListNode<GValue>> {
-    if (mutationTolerant) {
-      const done: DoublyLinkedListNode<GValue>[] = [];
+  *iterator({ reverse = false }: DoublyLinkedListIterableOptions = {}): Generator<
+    DoublyLinkedListNode<GValue>
+  > {
+    this.#internals.reverseIteration = reverse;
 
-      if (reverse) {
-        let node: DoublyLinkedListNode<GValue> | null = this.#last;
+    if (reverse) {
+      let node: DoublyLinkedListNode<GValue> | null = this.#internals.last;
 
-        main: while (node !== null) {
-          done.push(node);
-          yield node;
-
-          while (node.list !== this) {
-            if (done.length === 0) {
-              node = this.#last;
-              continue main;
-            } else {
-              node = done.pop()!;
-            }
-          }
-
-          node = node.previous;
-        }
-      } else {
-        let node: DoublyLinkedListNode<GValue> | null = this.#first;
-
-        main: while (node !== null) {
-          done.push(node);
-          yield node;
-
-          while (node.list !== this) {
-            if (done.length === 0) {
-              node = this.#first;
-              continue main;
-            } else {
-              node = done.pop()!;
-            }
-          }
-
-          node = node.next;
-        }
+      while (node !== null) {
+        this.#internals.iterated = node.previous;
+        yield node;
+        node = this.#internals.iterated;
       }
     } else {
-      if (reverse) {
-        let node: DoublyLinkedListNode<GValue> | null = this.#last;
+      let node: DoublyLinkedListNode<GValue> | null = this.#internals.first;
 
-        while (node !== null) {
-          yield node;
-          node = node.previous;
-        }
-      } else {
-        let node: DoublyLinkedListNode<GValue> | null = this.#first;
-
-        while (node !== null) {
-          yield node;
-          node = node.next;
-        }
+      while (node !== null) {
+        this.#internals.iterated = node.next;
+        yield node;
+        node = this.#internals.iterated;
       }
     }
   }
@@ -286,5 +237,9 @@ export class DoublyLinkedList<GValue> {
     this.forEachNode((node: DoublyLinkedListNode<GValue>): void => {
       callback(node.value);
     }, options);
+  }
+
+  get [Symbol.toStringTag](): string {
+    return 'DoublyLinkedList';
   }
 }

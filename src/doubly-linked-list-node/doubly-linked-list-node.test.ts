@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { DoublyLinkedList } from '../doubly-linked-list/doubly-linked-list.js';
 import { DoublyLinkedListNode } from './doubly-linked-list-node.js';
-import { DoublyLinkedList } from './doubly-linked-list.js';
 
 describe('DoublyLinkedListNode', (): void => {
   describe('constructor', (): void => {

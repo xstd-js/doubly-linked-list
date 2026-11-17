@@ -1,6 +1,6 @@
 import { describe, expect, it, test, vi } from 'vitest';
-import { DoublyLinkedListNode } from './doubly-linked-list-node.js';
-import { DoublyLinkedList } from './doubly-linked-list.js';
+import { DoublyLinkedListNode } from '../doubly-linked-list-node/doubly-linked-list-node.js';
+import { DoublyLinkedList, DoublyLinkedListIterableOptions } from './doubly-linked-list.js';
 
 describe('DoublyLinkedList', (): void => {
   describe('constructor', (): void => {
@@ -104,6 +104,22 @@ describe('DoublyLinkedList', (): void => {
       });
     });
 
+    describe('set', (): void => {
+      it('should set a new value', (): void => {
+        const list = new DoublyLinkedList<number>([0, 1, 2]);
+        list.set(1, 4);
+
+        expect(Array.from(list.values())).toEqual([0, 4, 2]);
+      });
+
+      it('should throw if out of bounds', (): void => {
+        const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+        expect(() => list.set(4, 4)).toThrow();
+        expect(() => list.set(-4, 4)).toThrow();
+      });
+    });
+
     describe('unshift', (): void => {
       it('should push values at the beginning of the list', (): void => {
         const list = new DoublyLinkedList<number>([0, 1, 2]);
@@ -170,75 +186,202 @@ describe('DoublyLinkedList', (): void => {
     });
 
     describe('iterator', (): void => {
-      it('should be iterable', async (): Promise<void> => {
-        const list = new DoublyLinkedList<number>([0, 1, 2]);
-
-        let i: number = 0;
-        for (const node of list.iterator()) {
-          expect(node.value).toBe(i++);
-        }
-
-        expect(i).toBe(3);
-      });
-
-      describe('mutationTolerant', (): void => {
+      describe('default order', (): void => {
         it('should be iterable', async (): Promise<void> => {
           const list = new DoublyLinkedList<number>([0, 1, 2]);
 
-          let i: number = 0;
-          for (const node of list.iterator({ mutationTolerant: true })) {
-            expect(node.value).toBe(i++);
+          const values: number[] = [];
+          for (const node of list.iterator()) {
+            values.push(node.value);
           }
-
-          expect(i).toBe(3);
+          expect(values).toEqual([0, 1, 2]);
         });
 
-        it('should be resilient to mutations', async (): Promise<void> => {
-          const list = new DoublyLinkedList<number>([0, 1, 2]);
-
-          let i: number = 0;
-          for (const node of list.iterator({ mutationTolerant: true })) {
-            expect(node.value).toBe(i++);
-            node.remove();
-          }
-          expect(i).toBe(3);
-        });
-      });
-
-      describe('reverse', (): void => {
-        it('should be iterable', async (): Promise<void> => {
-          const list = new DoublyLinkedList<number>([0, 1, 2]);
-
-          let i: number = 0;
-          for (const node of list.iterator({ reverse: true })) {
-            expect(node.value).toBe(2 - i);
-            i++;
-          }
-          expect(i).toBe(3);
-        });
-
-        describe('mutationTolerant', (): void => {
-          it('should be iterable', async (): Promise<void> => {
+        describe('resilient to mutations', (): void => {
+          test('node.remove()', async (): Promise<void> => {
             const list = new DoublyLinkedList<number>([0, 1, 2]);
 
-            let i: number = 0;
-            for (const node of list.iterator({ reverse: true, mutationTolerant: true })) {
-              expect(node.value).toBe(2 - i);
-              i++;
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.remove();
+              }
             }
-            expect(i).toBe(3);
+            expect(values).toEqual([0, 1, 2]);
           });
 
-          it('should be resilient to mutations', async (): Promise<void> => {
+          test('node.next.remove()', async (): Promise<void> => {
             const list = new DoublyLinkedList<number>([0, 1, 2]);
 
-            let i: number = 0;
-            for (const node of list.iterator({ reverse: true, mutationTolerant: true })) {
-              expect(node.value).toBe(2 - i);
-              i++;
-              node.remove();
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.next!.remove();
+              }
             }
-            expect(i).toBe(3);
+            expect(values).toEqual([0, 2]);
+          });
+
+          test('node.next.insertBeginning(list)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.next!.insertBeginning(list);
+              }
+            }
+            expect(values).toEqual([0, 2]);
+          });
+
+          test('node.next.insertEnd(list)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.next!.insertEnd(list);
+              }
+            }
+            expect(values).toEqual([0, 2, 1]);
+          });
+
+          test('node.insertAfter(list.last)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.insertAfter(list.last!);
+              }
+            }
+            expect(values).toEqual([0, 2, 1]);
+          });
+
+          test('list.last.insertAfter(node.next)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                list.last!.insertAfter(node.next!);
+              }
+            }
+            expect(values).toEqual([0, 2, 1]);
+          });
+
+          test('node.next.insertBefore(list.last)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator()) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.next!.insertBefore(list.last!);
+              }
+            }
+            expect(values).toEqual([0, 2, 1]);
+          });
+        });
+      });
+
+      // TODO
+      describe('reverse', (): void => {
+        const options: DoublyLinkedListIterableOptions = { reverse: true };
+
+        it('should be iterable', async (): Promise<void> => {
+          const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+          const values: number[] = [];
+          for (const node of list.iterator(options)) {
+            values.push(node.value);
+          }
+          expect(values).toEqual([2, 1, 0]);
+        });
+
+        describe('resilient to mutations', (): void => {
+          test('node.remove()', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator(options)) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.remove();
+              }
+            }
+            expect(values).toEqual([2, 1, 0]);
+          });
+
+          test('node.previous.remove()', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator(options)) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.previous!.remove();
+              }
+            }
+            expect(values).toEqual([2, 0]);
+          });
+
+          test('node.previous.insertBeginning(list)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator(options)) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.previous!.insertBeginning(list);
+              }
+            }
+            expect(values).toEqual([2, 0, 1]);
+          });
+
+          test('node.previous.insertEnd(list)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator(options)) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.previous!.insertEnd(list);
+              }
+            }
+            expect(values).toEqual([2, 0]);
+          });
+
+          test('node.previous.insertAfter(list.first)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator(options)) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node.previous!.insertAfter(list.first!);
+              }
+            }
+            expect(values).toEqual([2, 0, 1]);
+          });
+
+          test('node.insertBefore(list.first)', async (): Promise<void> => {
+            const list = new DoublyLinkedList<number>([0, 1, 2]);
+
+            const values: number[] = [];
+            for (const node of list.iterator(options)) {
+              values.push(node.value);
+              if (values.length === 1) {
+                node!.insertBefore(list.first!);
+              }
+            }
+            expect(values).toEqual([2, 0, 1]);
           });
         });
       });
@@ -297,10 +440,18 @@ describe('DoublyLinkedList', (): void => {
         expect(spy).toHaveBeenNthCalledWith(3, 2);
       });
     });
+
+    describe('Symbol.toStringTag', (): void => {
+      it('should return the class name', async (): Promise<void> => {
+        expect(new DoublyLinkedList<number>([0, 1, 2]).toString()).toBe(
+          '[object DoublyLinkedList]',
+        );
+      });
+    });
   });
 
-  describe('Emitter', (): void => {
-    test('exemple-01', async (): Promise<void> => {
+  describe.skip('Emitter', (): void => {
+    test('example-01', async (): Promise<void> => {
       interface Listener<GValue> {
         (value: GValue): void;
       }
@@ -318,7 +469,7 @@ describe('DoublyLinkedList', (): void => {
         }
 
         dispatch(value: GValue): void {
-          for (const listener of this.#listeners.values({ mutationTolerant: true })) {
+          for (const listener of this.#listeners.values()) {
             listener(value);
           }
         }

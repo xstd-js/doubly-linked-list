@@ -105,6 +105,6 @@ emitter.dispatch(1);
 |          | list        |               |               |               |                |                 |                  | O(1)       |
 | pop      | **array**   | 1.09x faster  | 1.12x faster  | 1.01x faster  | 1.00x faster   | 1.13x faster    | 1.22x faster     | O(1)       |
 |          | list        |               |               |               |                |                 |                  | O(1)       |
-| iterate  | **array**   | 7.53x faster  | 21.51x faster | 34.71x faster | 39.68x faster  | 35.40x faster   | 3.54x faster     | O(n)       |
+| iterate  | **array**   | 7.53x faster  | 21.51x faster | 34.71x faster | 39.68x faster  | 35.40x faster   | 37.30x faster    | O(n)       |
 |          | list        |               |               |               |                |                 |                  | O(n)       |
 

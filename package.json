@@ -15,7 +15,9 @@
     "fb:rc": "node fabrique/actions/cli/build-and-publish.cli.js --mode rc"
   },
   "description": "DoublyLinkedList implementation",
-  "keywords": ["linked list"],
+  "keywords": [
+    "linked list"
+  ],
   "author": "Valentin Richard",
   "license": "MIT",
   "access": "public",
@@ -24,17 +26,17 @@
     "url": "git+https://github.com/xstd-js/doubly-linked-list.git"
   },
   "devDependencies": {
-    "@types/node": "^24.0.10",
+    "@types/node": "^24.5.2",
     "@vitest/coverage-istanbul": "^3.2.4",
     "prettier": "^3.6.2",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "typedoc": "^0.28.7",
-    "typescript": "^5.8.3",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "typedoc": "^0.28.13",
+    "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   },
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.10.0",
   "fabrique": {
-    "version": "0.3.9",
+    "version": "1.0.6",
     "type": "lib"
   }
 }
